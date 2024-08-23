@@ -1,0 +1,612 @@
+
+<file path="index.html">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Burlington Dining Guide</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Burlington Dining Guide</h1>
+        <p>Discover three unique dining experiences in beautiful Burlington!</p>
+    </header>
+    
+    <main>
+        <section id="maple-mountain">
+            <h2>Maple Mountain Bistro</h2>
+            <p>An upscale farm-to-table experience featuring the best of Vermont's local produce.</p>
+            <ul>
+                <li>Ambiance: Rustic elegance</li>
+                <li>Price: $$$</li>
+                <li>Specialty: Maple-glazed duck breast</li>
+            </ul>
+        </section>
+
+        <section id="lakeside-pizzeria">
+            <h2>Lakeside Pizzeria</h2>
+            <p>A casual, family-friendly spot with views of Lake Champlain.</p>
+            <ul>
+                <li>Ambiance: Relaxed and welcoming</li>
+                <li>Price: $$</li>
+                <li>Specialty: Wood-fired Vermont cheese pizza</li>
+            </ul>
+        </section>
+
+        <section id="green-mountain-sushi">
+            <h2>Green Mountain Sushi</h2>
+            <p>Modern fusion cuisine blending traditional Japanese techniques with Vermont ingredients.</p>
+            <ul>
+                <li>Ambiance: Sleek and contemporary</li>
+                <li>Price: $$$</li>
+                <li>Specialty: Maple-soy glazed salmon roll</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>Enjoy your dining adventure in Burlington!</p>
+    </footer>
+</body>
+</html>
+</file>
+<file path="server.js">
+const http = require("http");
+const fs = require("fs");
+const path = require("path");
+
+const server = http.createServer((req, res) => {
+  if (req.url === "/") {
+    fs.readFile(path.join(__dirname, "index.html"), (err, content) => {
+      if (err) {
+        res.writeHead(500);
+        res.end("Server Error");
+      } else {
+        res.writeHead(200, { "Content-Type": "text/html" });
+        res.end(content);
+      }
+    });
+  } else if (req.url === "/styles.css") {
+    fs.readFile(path.join(__dirname, "styles.css"), (err, content) => {
+      if (err) {
+        res.writeHead(500);
+        res.end("Server Error");
+      } else {
+        res.writeHead(200, { "Content-Type": "text/css" });
+        res.end(content);
+      }
+    });
+  } else {
+    res.writeHead(404);
+    res.end("Not Found");
+  }
+});
+
+const PORT = 4000;
+server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+</file>
+<file path="styles.css">
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #e6f3ff;
+}
+
+header {
+    background-color: #2C3E50;
+    color: #ECF0F1;
+    text-align: center;
+    padding: 1rem;
+    border-radius: 5px;
+}
+
+h1 {
+    margin-bottom: 0.5rem;
+}
+
+main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 2rem;
+}
+
+section {
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    width: calc(33.33% - 1rem);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+h2 {
+    color: #E74C3C;
+}
+
+ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+li {
+    margin-bottom: 0.5rem;
+}
+
+footer {
+    text-align: center;
+    margin-top: 2rem;
+    color: #7F8C8D;
+}
+
+@media (max-width: 768px) {
+    section {
+        width: 100%;
+    }
+}
+</file>
+
+<file path="index.html">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Burlington Dining Guide</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Burlington Dining Guide</h1>
+        <p>Discover three unique dining experiences in beautiful Burlington!</p>
+    </header>
+    
+    <main>
+        <section id="maple-mountain">
+            <h2>Maple Mountain Bistro</h2>
+            <p>An upscale farm-to-table experience featuring the best of Vermont's local produce.</p>
+            <ul>
+                <li>Ambiance: Rustic elegance</li>
+                <li>Price: $$$</li>
+                <li>Specialty: Maple-glazed duck breast</li>
+            </ul>
+        </section>
+
+        <section id="lakeside-pizzeria">
+            <h2>Lakeside Pizzeria</h2>
+            <p>A casual, family-friendly spot with views of Lake Champlain.</p>
+            <ul>
+                <li>Ambiance: Relaxed and welcoming</li>
+                <li>Price: $$</li>
+                <li>Specialty: Wood-fired Vermont cheese pizza</li>
+            </ul>
+        </section>
+
+        <section id="green-mountain-sushi">
+            <h2>Green Mountain Sushi</h2>
+            <p>Modern fusion cuisine blending traditional Japanese techniques with Vermont ingredients.</p>
+            <ul>
+                <li>Ambiance: Sleek and contemporary</li>
+                <li>Price: $$$</li>
+                <li>Specialty: Maple-soy glazed salmon roll</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>Enjoy your dining adventure in Burlington!</p>
+    </footer>
+</body>
+</html>
+</file>
+<file path="server.js">
+const http = require("http");
+const fs = require("fs");
+const path = require("path");
+
+const server = http.createServer((req, res) => {
+  if (req.url === "/") {
+    fs.readFile(path.join(__dirname, "index.html"), (err, content) => {
+      if (err) {
+        res.writeHead(500);
+        res.end("Server Error");
+      } else {
+        res.writeHead(200, { "Content-Type": "text/html" });
+        res.end(content);
+      }
+    });
+  } else if (req.url === "/styles.css") {
+    fs.readFile(path.join(__dirname, "styles.css"), (err, content) => {
+      if (err) {
+        res.writeHead(500);
+        res.end("Server Error");
+      } else {
+        res.writeHead(200, { "Content-Type": "text/css" });
+        res.end(content);
+      }
+    });
+  } else {
+    res.writeHead(404);
+    res.end("Not Found");
+  }
+});
+
+const PORT = 4000;
+server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+</file>
+<file path="styles.css">
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: red;
+}
+
+header {
+    background-color: #2C3E50;
+    color: #ECF0F1;
+    text-align: center;
+    padding: 1rem;
+    border-radius: 5px;
+}
+
+h1 {
+    margin-bottom: 0.5rem;
+}
+
+main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 2rem;
+}
+
+section {
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    width: calc(33.33% - 1rem);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+h2 {
+    color: #E74C3C;
+}
+
+ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+li {
+    margin-bottom: 0.5rem;
+}
+
+footer {
+    text-align: center;
+    margin-top: 2rem;
+    color: #7F8C8D;
+}
+
+@media (max-width: 768px) {
+    section {
+        width: 100%;
+    }
+}
+</file>
+
+<file path="index.html">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Burlington Dining Guide</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Burlington Dining Guide</h1>
+        <p>Discover three unique dining experiences in beautiful Burlington!</p>
+    </header>
+    
+    <main>
+        <section id="maple-mountain">
+            <h2>Maple Mountain Bistro</h2>
+            <p>An upscale farm-to-table experience featuring the best of Vermont's local produce.</p>
+            <ul>
+                <li>Ambiance: Rustic elegance</li>
+                <li>Price: $$$</li>
+                <li>Specialty: Maple-glazed duck breast</li>
+            </ul>
+        </section>
+
+        <section id="lakeside-pizzeria">
+            <h2>Lakeside Pizzeria</h2>
+            <p>A casual, family-friendly spot with views of Lake Champlain.</p>
+            <ul>
+                <li>Ambiance: Relaxed and welcoming</li>
+                <li>Price: $$</li>
+                <li>Specialty: Wood-fired Vermont cheese pizza</li>
+            </ul>
+        </section>
+
+        <section id="green-mountain-sushi">
+            <h2>Green Mountain Sushi</h2>
+            <p>Modern fusion cuisine blending traditional Japanese techniques with Vermont ingredients.</p>
+            <ul>
+                <li>Ambiance: Sleek and contemporary</li>
+                <li>Price: $$$</li>
+                <li>Specialty: Maple-soy glazed salmon roll</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>Enjoy your dining adventure in Burlington!</p>
+    </footer>
+</body>
+</html>
+</file>
+<file path="server.js">
+const http = require("http");
+const fs = require("fs");
+const path = require("path");
+
+const server = http.createServer((req, res) => {
+  if (req.url === "/") {
+    fs.readFile(path.join(__dirname, "index.html"), (err, content) => {
+      if (err) {
+        res.writeHead(500);
+        res.end("Server Error");
+      } else {
+        res.writeHead(200, { "Content-Type": "text/html" });
+        res.end(content);
+      }
+    });
+  } else if (req.url === "/styles.css") {
+    fs.readFile(path.join(__dirname, "styles.css"), (err, content) => {
+      if (err) {
+        res.writeHead(500);
+        res.end("Server Error");
+      } else {
+        res.writeHead(200, { "Content-Type": "text/css" });
+        res.end(content);
+      }
+    });
+  } else {
+    res.writeHead(404);
+    res.end("Not Found");
+  }
+});
+
+const PORT = 4000;
+server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+</file>
+<file path="styles.css">
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: orange;
+}
+
+header {
+    background-color: #2C3E50;
+    color: #ECF0F1;
+    text-align: center;
+    padding: 1rem;
+    border-radius: 5px;
+}
+
+h1 {
+    margin-bottom: 0.5rem;
+}
+
+main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 2rem;
+}
+
+section {
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    width: calc(33.33% - 1rem);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+h2 {
+    color: #E74C3C;
+}
+
+ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+li {
+    margin-bottom: 0.5rem;
+}
+
+footer {
+    text-align: center;
+    margin-top: 2rem;
+    color: #7F8C8D;
+}
+
+@media (max-width: 768px) {
+    section {
+        width: 100%;
+    }
+}
+</file>
+
+<file path="index.html">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Burlington Dining Guide</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Burlington Dining Guide</h1>
+        <p>Discover three unique dining experiences in beautiful Burlington!</p>
+    </header>
+    
+    <main>
+        <section id="maple-mountain">
+            <h2>Maple Mountain Bistro</h2>
+            <p>An upscale farm-to-table experience featuring the best of Vermont's local produce.</p>
+            <ul>
+                <li>Ambiance: Rustic elegance</li>
+                <li>Price: $$$</li>
+                <li>Specialty: Maple-glazed duck breast</li>
+            </ul>
+        </section>
+
+        <section id="lakeside-pizzeria">
+            <h2>Lakeside Pizzeria</h2>
+            <p>A casual, family-friendly spot with views of Lake Champlain.</p>
+            <ul>
+                <li>Ambiance: Relaxed and welcoming</li>
+                <li>Price: $$</li>
+                <li>Specialty: Wood-fired Vermont cheese pizza</li>
+            </ul>
+        </section>
+
+        <section id="green-mountain-sushi">
+            <h2>Green Mountain Sushi</h2>
+            <p>Modern fusion cuisine blending traditional Japanese techniques with Vermont ingredients.</p>
+            <ul>
+                <li>Ambiance: Sleek and contemporary</li>
+                <li>Price: $$$</li>
+                <li>Specialty: Maple-soy glazed salmon roll</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>Enjoy your dining adventure in Burlington!</p>
+    </footer>
+</body>
+</html>
+</file>
+<file path="server.js">
+const http = require("http");
+const fs = require("fs");
+const path = require("path");
+
+const server = http.createServer((req, res) => {
+  if (req.url === "/") {
+    fs.readFile(path.join(__dirname, "index.html"), (err, content) => {
+      if (err) {
+        res.writeHead(500);
+        res.end("Server Error");
+      } else {
+        res.writeHead(200, { "Content-Type": "text/html" });
+        res.end(content);
+      }
+    });
+  } else if (req.url === "/styles.css") {
+    fs.readFile(path.join(__dirname, "styles.css"), (err, content) => {
+      if (err) {
+        res.writeHead(500);
+        res.end("Server Error");
+      } else {
+        res.writeHead(200, { "Content-Type": "text/css" });
+        res.end(content);
+      }
+    });
+  } else {
+    res.writeHead(404);
+    res.end("Not Found");
+  }
+});
+
+const PORT = 4000;
+server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+</file>
+<file path="styles.css">
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #00BFFF;
+}
+
+header {
+    background-color: #2C3E50;
+    color: #ECF0F1;
+    text-align: center;
+    padding: 1rem;
+    border-radius: 5px;
+}
+
+h1 {
+    margin-bottom: 0.5rem;
+}
+
+main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 2rem;
+}
+
+section {
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    width: calc(33.33% - 1rem);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+h2 {
+    color: #E74C3C;
+}
+
+ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+li {
+    margin-bottom: 0.5rem;
+}
+
+footer {
+    text-align: center;
+    margin-top: 2rem;
+    color: #7F8C8D;
+}
+
+@media (max-width: 768px) {
+    section {
+        width: 100%;
+    }
+}
+</file>
